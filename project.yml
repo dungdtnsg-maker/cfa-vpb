@@ -1,0 +1,57 @@
+name: VPBankCFA
+
+options:
+  minimumXcodeGenVersion: 2.38.0
+  projectFormat: xcode15_3
+  xcodeVersion: "1600"
+  deploymentTarget:
+    iOS: "14.0"
+
+configs:
+  Debug: debug
+  Release: release
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.3.3"
+    CURRENT_PROJECT_VERSION: "10303"
+
+fileGroups:
+  - README.md
+  - Supporting
+
+targets:
+  VPBankCFA:
+    type: application
+    platform: iOS
+    deploymentTarget: "14.0"
+    sources:
+      - path: Sources
+      - path: Resources/Assets.xcassets
+      - path: Resources/PrivacyInfo.xcprivacy
+        buildPhase: resources
+      - path: Web
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.vpbank.cfa.ios.v133
+        PRODUCT_NAME: VPBankCFA
+        INFOPLIST_FILE: Supporting/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1,2"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        ENABLE_USER_SCRIPT_SANDBOXING: YES
+        SWIFT_STRICT_CONCURRENCY: minimal
+
+schemes:
+  VPBankCFA:
+    build:
+      targets:
+        VPBankCFA: all
+    run:
+      config: Debug
+    archive:
+      config: Release
